@@ -2,6 +2,7 @@ package bench
 
 import (
 	"testing"
+	"time"
 )
 
 func BenchmarkOutsideWithDummyPanic(b *testing.B) {
@@ -19,6 +20,11 @@ func fOutsideWithDummyPanic() {
 }
 
 func f1OutsideWithDummyPanic() (string, error) {
-	// Генерация паники
-	panic("Test panic")
+	now := time.Now().UnixNano()
+	if now < 1000 {
+		panic("Test panic")
+	} else {
+		return "", nil
+	}
+
 }
