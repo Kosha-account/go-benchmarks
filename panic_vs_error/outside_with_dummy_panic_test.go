@@ -1,6 +1,8 @@
 package bench
 
 import (
+	"errors"
+	"fmt"
 	"testing"
 	"time"
 )
@@ -19,12 +21,12 @@ func fOutsideWithDummyPanic() {
 	f1OutsideWithDummyPanic()
 }
 
-func f1OutsideWithDummyPanic() (string, error) {
+func f1OutsideWithDummyPanic() string {
 	now := time.Now().UnixNano()
 	if now < 1000 {
-		panic("Test panic")
+		panic(errors.New(fmt.Sprintf("%d", now)))
 	} else {
-		return "", nil
+		return ""
 	}
 
 }
