@@ -9,7 +9,6 @@ import (
 
 var errTest = errors.New("123")
 
-//go:noinline
 func ef(i, N int) error {
 	if i < 0 {
 		return errTest
@@ -19,7 +18,6 @@ func ef(i, N int) error {
 	return ef(i+1, N)
 }
 
-//go:noinline
 func pf(i, N int) {
 	if i < 0 {
 		panic("test panic")
