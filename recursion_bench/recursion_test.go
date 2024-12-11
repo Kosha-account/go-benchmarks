@@ -37,6 +37,17 @@ func testP(N int) {
 	pf(0, N)
 }
 
+func BenchmarkPanic(b *testing.B) {
+	for i := 0; i < b.N; i++ {
+		testP(deep)
+	}
+}
+func BenchmarkError(b *testing.B) {
+	for i := 0; i < b.N; i++ {
+		testE(deep)
+	}
+}
+
 var deep int
 
 func init() {
@@ -46,17 +57,4 @@ func init() {
 func TestMain(m *testing.M) {
 	flag.Parse()
 	os.Exit(m.Run())
-}
-
-func BenchmarkPanic(b *testing.B) {
-
-	for i := 0; i < b.N; i++ {
-		testP(deep)
-	}
-}
-func BenchmarkError(b *testing.B) {
-
-	for i := 0; i < b.N; i++ {
-		testE(deep)
-	}
 }
