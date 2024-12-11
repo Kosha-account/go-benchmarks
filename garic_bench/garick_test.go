@@ -38,11 +38,11 @@ func testP(N int) {
 }
 func BenchmarkPanic(b *testing.B) {
 	for i := 0; i < b.N; i++ {
-		testP(i)
+		testP(b.N)
 	}
 }
 func BenchmarkError(b *testing.B) {
 	for i := 0; i < b.N; i++ {
-		testE(i)
+		testE(b.N)
 	}
 }
