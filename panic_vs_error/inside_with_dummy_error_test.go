@@ -15,6 +15,10 @@ func BenchmarkInsideWithDummyError(b *testing.B) {
 }
 
 func fWithDummyError() {
+	defer func() {
+		if r := recover(); r != nil {
+		}
+	}()
 	_, err := f1WithDummyError()
 	if err != nil {
 		log.Println(err)

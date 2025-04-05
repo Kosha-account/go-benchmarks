@@ -22,6 +22,7 @@ func pf(i, N int) {
 	if i < 0 {
 		panic("test panic")
 	} else if i == N {
+
 		return
 	}
 	pf(i+1, N)
@@ -37,19 +38,13 @@ func testP(N int) {
 
 func BenchmarkPanic(b *testing.B) {
 	for i := 0; i < b.N; i++ {
-		testP(deep)
+		testP(10)
 	}
 }
 func BenchmarkError(b *testing.B) {
 	for i := 0; i < b.N; i++ {
-		testE(deep)
+		testE(10)
 	}
-}
-
-var deep int
-
-func init() {
-	flag.IntVar(&deep, "deep", 0, "Deep")
 }
 
 func TestMain(m *testing.M) {
